@@ -260,23 +260,9 @@ const setComputerMoves = () => {
     }
     playerTwoMoveThreeValue = remaningPoints;
 
-    console.log(playerTwoMoveOneType, playerTwoMoveTwoType, playerTwoMoveThreeType);
-    console.log(playerTwoMoveOneValue, playerTwoMoveTwoValue, playerTwoMoveThreeValue);
+    return [playerTwoMoveOneType, playerTwoMoveOneValue, playerTwoMoveTwoType, playerTwoMoveTwoValue, playerTwoMoveThreeType, playerTwoMoveThreeValue];
 
-    
-    return playerTwoMoveThreeValue;
-
-
-    //case 1: set move to some type. case 2: other type, case 3: other type
-    //set random value 1-99 // 99 - random = new limit
-    
-    //get random num 1-3
-    //case 1: set move to some type. case 2: other type, case 3: other type
-    //set random value 1-99 // 99 - random = new limit
-
-    //get random num 1-3
-    //case 1: set move to some type. case 2: other type, case 3: other type
-    //set random value 1-99 // 99 - random = new limit
 }
 
-console.log(setComputerMoves());
+// Returns random moves and values for computer playing player 2. - PASSED
+//console.log(setComputerMoves());
