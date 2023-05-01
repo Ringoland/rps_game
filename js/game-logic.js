@@ -19,12 +19,40 @@ let ties = 0;
 const setPlayerMoves = (player, moveOneType, moveOneValue, moveTwoType, moveTwoValue, moveThreeType, moveThreeValue) => {
     //assigns values to variables for each type and values
     if (player === "Player One") {
-        playerOneMoveOneType = moveOneType;
-        playerOneMoveOneValue = moveOneValue;
-        playerOneMoveTwoType = moveTwoType;
-        playerOneMoveTwoValue = moveTwoValue;
-        playerOneMoveThreeType = moveThreeType;
-        playerOneMoveThreeValue = moveThreeValue;
+        if (moveOneType === "rock"|| moveOneType==="paper" || moveOneType==="scissors") {
+            playerOneMoveOneType = moveOneType;
+        } else {
+            return undefined;
+        }
+
+        if (moveTwoType === "rock"|| moveTwoType==="paper" || moveTwoType==="scissors") {
+            playerOneMoveTwoType = moveTwoType;
+        } else {
+            return undefined;
+        }
+
+        if (moveThreeType === "rock"|| moveThreeType==="paper" || moveThreeType==="scissors") {
+            playerOneMoveThreeType = moveThreeType;
+        } else {
+            return undefined;
+        }
+
+        if (moveOneValue+moveTwoValue+moveThreeValue < 100 || moveOneValue+moveTwoValue+moveThreeValue > 2) {
+            playerOneMoveOneValue = moveOneValue;
+            playerOneMoveTwoValue = moveTwoValue;
+            playerOneMoveThreeValue = moveThreeValue;
+
+
+        } else {
+            return undefined;
+        }
+
+
+        //playerOneMoveOneValue = moveOneValue;
+        //playerOneMoveTwoType = moveTwoType;
+        //playerOneMoveTwoValue = moveTwoValue;
+        //playerOneMoveThreeType = moveThreeType;
+        //playerOneMoveThreeValue = moveThreeValue;
         //return playerOneMoveOneType;
 
     } else if (player == "Player Two") {
@@ -163,13 +191,13 @@ const getGameWinner = () => {
     }
 
     if (playerOneWins > playerTwoWins) {
-        return "Player One Wins!!";
+        return "Player One";
 
     } else if (playerOneWins < playerTwoWins) {
-        return "Player Two Wins!!";
+        return "Player Two";
 
     } else if (playerOneWins === playerTwoWins) {
-        return "Game is tied";
+        return "Tie";
     }
 }
 
