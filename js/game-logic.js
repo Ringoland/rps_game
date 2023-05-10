@@ -189,9 +189,7 @@ const getRoundWinner = (roundNumber) => {
         default:
             return null;
 
-        }
-
-            
+        }      
         
 }
 
@@ -214,6 +212,8 @@ const getGameWinner = () => {
         playerTwoWins += 1;
     } else if (getRoundWinner(1) == "Tie") {
         ties += 1;
+    } else if (getRoundWinner(1) == null) {
+        return null;
     }
 
     if (getRoundWinner(2) == "Player One") {
@@ -222,6 +222,8 @@ const getGameWinner = () => {
         playerTwoWins += 1;
     } else if (getRoundWinner(2) == "Tie"){
         ties += 1;
+    } else if (getRoundWinner(2) == null) {
+        return null;
     }
 
     if (getRoundWinner(3) == "Player One") {
@@ -230,9 +232,11 @@ const getGameWinner = () => {
         playerTwoWins += 1;
     } else if (getRoundWinner(3) == "Tie"){
         ties += 1;
+    } else if (getRoundWinner(3) == null) {
+        return null;
     }
 
-    //console.log(playerOneWins, playerTwoWins, ties);
+    console.log(playerOneWins, playerTwoWins, ties);
 
     if (playerOneWins == playerTwoWins) {
         return "Tie";
@@ -242,23 +246,26 @@ const getGameWinner = () => {
 
     } else if (playerOneWins > playerTwoWins) {
         return "Player One";
+
     }
 }
 
 /*Test for Game - Passed
 
-playerOneMoveOneType = 'rock';
+playerOneMoveOneType = 'paper';
 playerOneMoveOneValue = 1;
 playerTwoMoveOneType = 'rock';
-playerTwoMoveOneValue = 53;
-playerOneMoveTwoType = 'rock';
-playerOneMoveTwoValue = 97;
-playerTwoMoveTwoType = 'paper';
-playerTwoMoveTwoValue = 1;
-playerOneMoveThreeType = 'rock';
-playerOneMoveThreeValue = 1;
+playerTwoMoveOneValue = 1; // player 1 wins
+
+playerOneMoveTwoType = 'scissors';
+playerOneMoveTwoValue = 1;
+playerTwoMoveTwoType = 'scissors';
+playerTwoMoveTwoValue = 97; //player 2 wins
+
+playerOneMoveThreeType = 'paper';
+playerOneMoveThreeValue = 88;
 playerTwoMoveThreeType = 'scissors';
-playerTwoMoveThreeValue = 45;
+playerTwoMoveThreeValue = 1; //player 2 wins
 
 console.log(getGameWinner());
 

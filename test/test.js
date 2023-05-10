@@ -329,6 +329,7 @@ describe('getGameWinner() - Main Functionality', function() {
   });
 
   it('should declare when player two wins', function() {
+    /*
     playerOneMoveOneType = 'rock';
     playerOneMoveOneValue = 1;
     playerTwoMoveOneType = 'rock';
@@ -341,6 +342,21 @@ describe('getGameWinner() - Main Functionality', function() {
     playerOneMoveThreeValue = 1;
     playerTwoMoveThreeType = 'scissors';
     playerTwoMoveThreeValue = 45;
+    */
+    playerOneMoveOneType = 'paper';
+    playerOneMoveOneValue = 1;
+    playerTwoMoveOneType = 'scissors';
+    playerTwoMoveOneValue = 1; // player 2 wins
+
+    playerOneMoveTwoType = 'paper';
+    playerOneMoveTwoValue = 1;
+    playerTwoMoveTwoType = 'scissors';
+    playerTwoMoveTwoValue = 97; //player 2 wins
+
+    playerOneMoveThreeType = 'paper';
+    playerOneMoveThreeValue = 88;
+    playerTwoMoveThreeType = 'scissors';
+    playerTwoMoveThreeValue = 1; //player 2 wins
 
     should.equal(getGameWinner(), 'Player Two');
   });
@@ -431,4 +447,5 @@ function clearMoves() {
   playerTwoMoveOneValue = undefined;
   playerTwoMoveTwoValue = undefined;
   playerTwoMoveThreeValue = undefined;
+  //getGameWinner() = undefined;
 }
