@@ -1,97 +1,56 @@
 // Global variables for move types and values.
-let playerOneMoveOneType;
-let playerOneMoveOneValue;
-let playerOneMoveTwoType;
-let playerOneMoveTwoValue;
-let playerOneMoveThreeType;
-let playerOneMoveThreeValue;
-let playerTwoMoveOneType;
-let playerTwoMoveOneValue;
-let playerTwoMoveTwoType;
-let playerTwoMoveTwoValue;
-let playerTwoMoveThreeType;
-let playerTwoMoveThreeValue;
-let playerOneWins = 0;
-let playerTwoWins = 0;
-let ties = 0;
+let playerOneMoveOneType,
+    playerOneMoveOneValue,
+    playerOneMoveTwoType,
+    playerOneMoveTwoValue,
+    playerOneMoveThreeType,
+    playerOneMoveThreeValue,
+    playerTwoMoveOneType,
+    playerTwoMoveOneValue,
+    playerTwoMoveTwoType,
+    playerTwoMoveTwoValue,
+    playerTwoMoveThreeType,
+    playerTwoMoveThreeValue;
+    
+//    ties = 0;
 
 //Set player moves and values.
 const setPlayerMoves = (player, moveOneType, moveOneValue, moveTwoType, moveTwoValue, moveThreeType, moveThreeValue) => {
-    //assigns values to variables for each type and values
-    const movesValues = moveOneValue + moveTwoValue + moveThreeValue;
-
-    if (moveOneType == null || moveTwoType == null || moveThreeType == null || (moveOneType != "rock" && moveOneType != "paper" && moveOneType != "scissors") || (moveTwoType != "rock" && moveTwoType != "paper" && moveTwoType != "scissors") || (moveThreeType != "rock" && moveThreeType != "paper" && moveThreeType != "scissors")) {
-        return undefined;
+    if (!moveOneType || !moveTwoType || !moveThreeType) {
+        return;
     }
 
-    if (moveOneValue == null || moveOneValue < 1 || moveOneValue > 97 || moveTwoValue == null || moveTwoValue < 1 || moveTwoValue > 97 || moveThreeValue == null || moveThreeValue < 1 || moveThreeValue > 97) {
-        return undefined;
+    if ((moveOneType != "rock" && moveOneType != "paper" && moveOneType != "scissors") || (moveTwoType != "rock" && moveTwoType != "paper" && moveTwoType != "scissors") || (moveThreeType != "rock" && moveThreeType != "paper" && moveThreeType != "scissors")) {
+        return;
     }
 
-    if (movesValues > 99) {
-        return undefined;
+    if (!moveOneValue || moveOneValue < 1 || moveOneValue > 97 || !moveTwoValue || moveTwoValue < 1 || moveTwoValue > 97 || !moveThreeValue || moveThreeValue < 1 || moveThreeValue > 97) {
+        return;
     }
 
+    if (moveOneValue + moveTwoValue + moveThreeValue > 99) {
+        return;
+    }
 
+    //you can remove move type checks, since already passed the top.
     if (player === "Player One") {
-        if (moveOneType === "rock"|| moveOneType==="paper" || moveOneType==="scissors") {
-            playerOneMoveOneType = moveOneType;
-            playerOneMoveOneValue = moveOneValue;
-
-        } else {
-            return undefined;
-        }
-
-        if (moveTwoType === "rock"|| moveTwoType==="paper" || moveTwoType==="scissors") {
-            playerOneMoveTwoType = moveTwoType;
-            playerOneMoveTwoValue = moveTwoValue;
-
-        } else {
-            return undefined;
-        }
-
-        if (moveThreeType === "rock"|| moveThreeType==="paper" || moveThreeType==="scissors") {
-            playerOneMoveThreeType = moveThreeType;
-            playerOneMoveThreeValue = moveThreeValue;
-
-        } else {
-            return undefined;
-        }
-
-
-
-
+        playerOneMoveOneType = moveOneType;
+        playerOneMoveOneValue = moveOneValue;
+        playerOneMoveTwoType = moveTwoType;
+        playerOneMoveTwoValue = moveTwoValue;
+        playerOneMoveThreeType = moveThreeType;
+        playerOneMoveThreeValue = moveThreeValue;
 
     } else if (player == "Player Two") {
-        
-        if (moveOneType == "rock"|| moveOneType == "paper" || moveOneType == "scissors") {
-            playerTwoMoveOneType = moveOneType;
-            playerTwoMoveOneValue = moveOneValue;
-
-        } else {
-            return undefined;
-        }
-
-        if (moveTwoType == "rock"|| moveTwoType == "paper" || moveTwoType == "scissors") {
-            playerTwoMoveTwoType = moveTwoType;
-            playerTwoMoveTwoValue = moveTwoValue;
-
-        } else {
-            return undefined;
-        }
-
-        if (moveThreeType == "rock"|| moveThreeType == "paper" || moveThreeType == "scissors") {
-            playerTwoMoveThreeType = moveThreeType;
-            playerTwoMoveThreeValue = moveThreeValue;
-
-        } else {
-            return undefined;
-        }
-
-
+        playerTwoMoveOneType = moveOneType;
+        playerTwoMoveOneValue = moveOneValue;
+        playerTwoMoveTwoType = moveTwoType;
+        playerTwoMoveTwoValue = moveTwoValue;
+        playerTwoMoveThreeType = moveThreeType;
+        playerTwoMoveThreeValue = moveThreeValue;
 
     } else {
-        return undefined;
+        return;
     }
 
 }
@@ -99,11 +58,9 @@ const setPlayerMoves = (player, moveOneType, moveOneValue, moveTwoType, moveTwoV
 //console.log(setPlayerMoves("tito", "rock", 30, "scissors", 20, "paper", 50));
 
 const getRoundWinner = (roundNumber) => {
-
-    //
     switch(roundNumber){
         case 1:
-            if (playerOneMoveOneType==undefined || playerOneMoveOneValue==undefined || playerTwoMoveOneType==undefined || playerTwoMoveOneValue==undefined) {
+            if (!playerOneMoveOneType || !playerOneMoveOneValue || !playerTwoMoveOneType || !playerTwoMoveOneValue) {
                 return null;
             }
 
@@ -132,7 +89,7 @@ const getRoundWinner = (roundNumber) => {
         
         case 2:
             //
-            if (playerOneMoveTwoType==undefined || playerOneMoveTwoValue==undefined || playerTwoMoveTwoType==undefined || playerTwoMoveTwoValue==undefined) {
+            if (!playerOneMoveTwoType || !playerOneMoveTwoValue || !playerTwoMoveTwoType || !playerTwoMoveTwoValue) {
                 return null;
             }
             if (playerOneMoveTwoType == playerTwoMoveTwoType) {
@@ -159,10 +116,9 @@ const getRoundWinner = (roundNumber) => {
             }
         
         case 3:
-            if (playerOneMoveThreeType==undefined || playerOneMoveThreeValue==undefined || playerTwoMoveThreeType==undefined || playerTwoMoveThreeValue==undefined) {
+            if (!playerOneMoveThreeType || !playerOneMoveThreeValue || !playerTwoMoveThreeType || !playerTwoMoveThreeValue) {
                 return null;
             }
-            
             if (playerOneMoveThreeType == playerTwoMoveThreeType) {
                 if (playerOneMoveThreeValue == playerTwoMoveThreeValue){
                     return "Tie";
@@ -188,9 +144,7 @@ const getRoundWinner = (roundNumber) => {
             
         default:
             return null;
-
-        }      
-        
+        }
 }
 
 
@@ -204,49 +158,52 @@ console.log(getRoundWinner(3));
 */
 
 
+
 const getGameWinner = () => {
-    if (getRoundWinner(1) == "Player One") {
-        playerOneWins += 1;
-
-    } else if (getRoundWinner(1) == "Player Two") {
-        playerTwoWins += 1;
-    } else if (getRoundWinner(1) == "Tie") {
-        ties += 1;
-    } else if (getRoundWinner(1) == null) {
-        return null;
+    if (!playerOneMoveOneType || !playerOneMoveTwoType ||
+        !playerOneMoveThreeType || !playerOneMoveOneValue ||
+        !playerOneMoveTwoValue || !playerOneMoveThreeValue ||
+        !playerTwoMoveOneType || !playerTwoMoveTwoType ||
+        !playerTwoMoveThreeType || !playerTwoMoveOneValue ||
+        !playerTwoMoveTwoValue || !playerTwoMoveThreeValue) {
+      return null;
     }
+    playerOneWins = 0; // it sets the value of player 1 wins back to zero every time you use the function
+    playerTwoWins = 0; // it sets the value of player 2 wins back to zero every time you use the function
 
-    if (getRoundWinner(2) == "Player One") {
-        playerOneWins += 1;
-    } else if (getRoundWinner(2) == "Player Two") {
-        playerTwoWins += 1;
-    } else if (getRoundWinner(2) == "Tie"){
-        ties += 1;
-    } else if (getRoundWinner(2) == null) {
-        return null;
-    }
 
-    if (getRoundWinner(3) == "Player One") {
-        playerOneWins += 1;
-    } else if (getRoundWinner(3) == "Player Two") {
-        playerTwoWins += 1;
-    } else if (getRoundWinner(3) == "Tie"){
-        ties += 1;
-    } else if (getRoundWinner(3) == null) {
-        return null;
-    }
+    if (getRoundWinner(1) === "Player One") {
+        playerOneWins = (playerOneWins + 1);
+    } else if (getRoundWinner(1) === "Player Two") {
+        playerTwoWins = (playerTwoWins +1);
+    } //else {
+        //return null;
+    //}
 
-    console.log(playerOneWins, playerTwoWins, ties);
+    if (getRoundWinner(2) === "Player One") {
+        playerOneWins = (playerOneWins + 1);
+    } else if (getRoundWinner(2) === "Player Two") {
+        playerTwoWins = (playerTwoWins +1);
+    } //else {
+        //return null;
+    //}
 
-    if (playerOneWins == playerTwoWins) {
-        return "Tie";
+    if (getRoundWinner(3) === "Player One") {
+        playerOneWins = (playerOneWins + 1);
+    } else if (getRoundWinner(3) === "Player Two") {
+        playerTwoWins = (playerTwoWins +1);
+    } //else {
+        //return null;
+    //}
 
-    } else if (playerTwoWins >  playerOneWins) {
-        return "Player Two";
+    //console.log(playerOneWins, playerTwoWins);
 
-    } else if (playerOneWins > playerTwoWins) {
+    if (playerOneWins > playerTwoWins) {
         return "Player One";
-
+    } else if (playerOneWins < playerTwoWins) {
+        return "Player Two";
+    } else {
+        return 'Tie';
     }
 }
 
@@ -270,6 +227,45 @@ playerTwoMoveThreeValue = 1; //player 2 wins
 console.log(getGameWinner());
 
 */
+
+/*
+function getGameWinner() {
+    if (!playerOneMoveOneType || !playerOneMoveTwoType ||
+        !playerOneMoveThreeType || !playerOneMoveOneValue ||
+        !playerOneMoveTwoValue || !playerOneMoveThreeValue ||
+        !playerTwoMoveOneType || !playerTwoMoveTwoType ||
+        !playerTwoMoveThreeType || !playerTwoMoveOneValue ||
+        !playerTwoMoveTwoValue || !playerTwoMoveThreeValue) {
+      return null;
+    }
+    playerOneWins = 0;
+    playerTwoWins = 0;
+  
+    const roundOneWinner = getRoundWinner(1);
+    const roundTwoWinner = getRoundWinner(2);
+    const roundThreeWinner = getRoundWinner(3);
+  
+    addWin(roundOneWinner);
+    addWin(roundTwoWinner);
+    addWin(roundThreeWinner);
+    if (playerOneWins > playerTwoWins) {
+      return 'Player One';
+    } else if (playerOneWins < playerTwoWins) {
+      return 'Player Two';
+    } else {
+      return 'Tie';
+    }
+  }
+  
+  function addWin(winner) {
+    if (winner === 'Player One') {
+      playerOneWins = (playerOneWins + 1) || 1;
+    } else if (winner === 'Player Two') {
+      playerTwoWins = (playerTwoWins + 1) || 1;
+    }
+  }
+
+  */
 
 const setComputerMoves = () => {
     //
