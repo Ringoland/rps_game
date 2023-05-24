@@ -173,27 +173,19 @@ const getGameWinner = () => {
         playerOneWins = (playerOneWins + 1);
     } else if (getRoundWinner(1) === "Player Two") {
         playerTwoWins = (playerTwoWins +1);
-    } //else {
-        //return null;
-    //}
+    }
 
     if (getRoundWinner(2) === "Player One") {
         playerOneWins = (playerOneWins + 1);
     } else if (getRoundWinner(2) === "Player Two") {
         playerTwoWins = (playerTwoWins +1);
-    } //else {
-        //return null;
-    //}
+    }
 
     if (getRoundWinner(3) === "Player One") {
         playerOneWins = (playerOneWins + 1);
     } else if (getRoundWinner(3) === "Player Two") {
         playerTwoWins = (playerTwoWins +1);
-    } //else {
-        //return null;
-    //}
-
-    //console.log(playerOneWins, playerTwoWins);
+    }
 
     if (playerOneWins > playerTwoWins) {
         return "Player One";
@@ -237,5 +229,3 @@ const setComputerMoves = () => {
     setPlayerMoves("Player Two", moveOneType, moveOneValue, moveTwoType, moveTwoValue, moveThreeType, moveThreeValue);
     return [playerTwoMoveOneType, playerTwoMoveOneValue, playerTwoMoveTwoType, playerTwoMoveTwoValue, playerTwoMoveThreeType, playerTwoMoveThreeValue]
 }
-
-//console.log(setComputerMoves());
