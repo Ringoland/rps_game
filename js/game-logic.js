@@ -11,8 +11,6 @@ let playerOneMoveOneType,
     playerTwoMoveTwoValue,
     playerTwoMoveThreeType,
     playerTwoMoveThreeValue;
-    
-//    ties = 0;
 
 //Set player moves and values.
 const setPlayerMoves = (player, moveOneType, moveOneValue, moveTwoType, moveTwoValue, moveThreeType, moveThreeValue) => {
@@ -228,106 +226,20 @@ console.log(getGameWinner());
 
 */
 
-/*
-function getGameWinner() {
-    if (!playerOneMoveOneType || !playerOneMoveTwoType ||
-        !playerOneMoveThreeType || !playerOneMoveOneValue ||
-        !playerOneMoveTwoValue || !playerOneMoveThreeValue ||
-        !playerTwoMoveOneType || !playerTwoMoveTwoType ||
-        !playerTwoMoveThreeType || !playerTwoMoveOneValue ||
-        !playerTwoMoveTwoValue || !playerTwoMoveThreeValue) {
-      return null;
-    }
-    playerOneWins = 0;
-    playerTwoWins = 0;
-  
-    const roundOneWinner = getRoundWinner(1);
-    const roundTwoWinner = getRoundWinner(2);
-    const roundThreeWinner = getRoundWinner(3);
-  
-    addWin(roundOneWinner);
-    addWin(roundTwoWinner);
-    addWin(roundThreeWinner);
-    if (playerOneWins > playerTwoWins) {
-      return 'Player One';
-    } else if (playerOneWins < playerTwoWins) {
-      return 'Player Two';
-    } else {
-      return 'Tie';
-    }
-  }
-  
-  function addWin(winner) {
-    if (winner === 'Player One') {
-      playerOneWins = (playerOneWins + 1) || 1;
-    } else if (winner === 'Player Two') {
-      playerTwoWins = (playerTwoWins + 1) || 1;
-    }
-  }
-
-  */
-
 const setComputerMoves = () => {
-    //
-    let randomMove;
-    let remaningPoints;
 
-    //Move one
-    randomMove = Math.floor((Math.random()*3)) + 1;
-    //console.log(randomMove);
+    const moves = ["rock", "paper", "scissors"];
 
-    switch(randomMove){
-        case 1:
-            playerTwoMoveOneType = "rock";
-            break;
-        case 2:
-            playerTwoMoveOneType = "paper";
-            break;
-        case 3:
-            playerTwoMoveOneType = "scissors";
-            break;
-    }
+    moveOneType = moves[Math.floor(Math.random()*3)];
+    moveTwoType = moves[Math.floor(Math.random()*3)];
+    moveThreeType = moves[Math.floor(Math.random()*3)];
 
-    playerTwoMoveOneValue = Math.floor(Math.random()*97) + 1;
-    remaningPoints = 99 - playerTwoMoveOneValue;
+    moveOneValue = Math.floor(Math.random()*96) + 1;
+    moveTwoValue = Math.floor(Math.random()*(97 - moveOneValue)) + 1;
+    moveThreeValue = 99 - (moveOneValue + moveTwoValue);
 
-    //Move two
-    randomMove = Math.floor(Math.random()*3) + 1;
-    switch(randomMove){
-        case 1:
-            playerTwoMoveTwoType = "rock";
-            break;
-        case 2:
-            playerTwoMoveTwoType = "paper";
-            break;
-        case 3:
-            playerTwoMoveTwoType = "scissors";
-            break;
-    }
-    playerTwoMoveTwoValue = Math.floor(Math.random()*remaningPoints) + 1;
-    remaningPoints = remaningPoints - playerTwoMoveTwoValue;
-
-
-    //Move three
-    randomMove = Math.floor(Math.random()*3) + 1;
-    //console.log(randomMove);
-
-    switch(randomMove){
-        case 1:
-            playerTwoMoveThreeType = "rock";
-            break;
-        case 2:
-            playerTwoMoveThreeType = "paper";
-            break;
-        case 3:
-            playerTwoMoveThreeType = "scissors";
-            break;
-    }
-    playerTwoMoveThreeValue = remaningPoints;
-
-    return [playerTwoMoveOneType, playerTwoMoveOneValue, playerTwoMoveTwoType, playerTwoMoveTwoValue, playerTwoMoveThreeType, playerTwoMoveThreeValue];
-
+    setPlayerMoves("Player Two", moveOneType, moveOneValue, moveTwoType, moveTwoValue, moveThreeType, moveThreeValue);
+    return [playerTwoMoveOneType, playerTwoMoveOneValue, playerTwoMoveTwoType, playerTwoMoveTwoValue, playerTwoMoveThreeType, playerTwoMoveThreeValue]
 }
 
-// Returns random moves and values for computer playing player 2. - PASSED
 //console.log(setComputerMoves());
