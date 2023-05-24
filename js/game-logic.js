@@ -156,7 +156,6 @@ console.log(getRoundWinner(3));
 */
 
 
-
 const getGameWinner = () => {
     if (!playerOneMoveOneType || !playerOneMoveTwoType ||
         !playerOneMoveThreeType || !playerOneMoveOneValue ||
@@ -221,9 +220,6 @@ playerOneMoveThreeType = 'paper';
 playerOneMoveThreeValue = 88;
 playerTwoMoveThreeType = 'scissors';
 playerTwoMoveThreeValue = 1; //player 2 wins
-
-console.log(getGameWinner());
-
 */
 
 const setComputerMoves = () => {
